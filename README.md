@@ -9,7 +9,7 @@ Setup your own git server
 ## server side 
 
 
-#### SSH read write (authenticated and secure~ access)
+#### SSH (authenticated, secure read/write access, single user)
 first add an user and setup home directory to a git store folder.
 all repos are bare object using ".git" as extension
 
@@ -18,42 +18,80 @@ useradd -c "git-operator" -M -d /mnt/disk/git -U git
 passwd git
 ```
 
-#### HTTP read only (public but eventualy hidden access)
+/mnt/disk/git is the home directory git user and it is the place from your bare repos
+
+
+#### HTTP (public eventually hidden read only access, single user)
 
 first setup an HTTP(s)? server pointing to /mnt/disk/git
-without directory listing but an index.html... for an hidden store
+without directory listing just an index.html... for an hidden store
 
 ```shell
 git clone http://mygit.server.ez/reponame
 ```
-now you can clone repo from HTTP(s)?
+
+#### HTTP (public eventually hidden read only access, multi user)
+
+root dir from the web server should be the parent directory from all git users
+
+
+```shell
+git clone http://mygit.server.ez/user/reponame
+```
 
 #### friendly frontend via HTTP(s)?
 
 You need write both a backend and frontend...
 
 * **backend** to handle git repos information
-* **frontend** to present data consistently
 
-and then access your gitserver via a webbrowser or **standalone** one...
+The backend might be an automate... scanning stuff periodically and on demand,
+
+Then storing goods into database(s)?... 
+
+* **frontend** to present data with consistencies
+
+The frontend might just fetch datas with stored queries and then present things...
+
+
+All done, you can access your gitserver via a webbrowser or **standalone** one...
 
 ## client side
 
 
-#### Create bare repo and install to your store
+#### SSH client access
 
-we will use git to create a bare repo and then we send it to git server using scp
+##### single user
+
+This is single user mode... using /bin/bash as shell.
+we will use git to create a bare repo from server side.
+
 
 ```shell
-git init --bare reponame.git
-scp -r ./reponame.git git@mygit.server.ez:~/
+ssh git@mygit.server.ez git init --bare reponame.git
 ```
 
-by now we can directly work with this repo
+by now we can directly work with this repo, using:
 
 
 ```shell
 git clone git@mygit.server.ez:~/reponame
+cd reponame
+echo "First commit" >> README.md
+git add .
+git commit -m "Aye Karamba!"
+git push
+```
+
+##### multi user
+
+This is multi user mode... using /usr/bin/git-shell as shell.
+To create a bare repo you'll need to request server; usually via HTTP...
+frontend/backend required...
+
+
+```shell
+git clone <user>@mygit.server.ez:~/reponame
 cd reponame
 echo "First commit" >> README.md
 git add .
@@ -70,7 +108,7 @@ notice ".git" is optional when cloning...
 git clone --bare source_reponame bare_reponame.git
 ```
 
-by now you can send that bare repo to your git server using scp
+by now you can send that bare repo to your git server using scp(single user mode)
 
 ## License
 This paper is free software; you can redistribute it and/or modify it under
