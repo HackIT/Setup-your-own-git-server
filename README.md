@@ -12,7 +12,7 @@ first add an user and setup home directory to a git store folder.
 all repos are bare object using ".git" as extension
 
 ```shell
-useradd -c "git-operator" -M -d /mnt/disk/git -s /usr/bin/git-shell -U git
+useradd -c "git-operator" -M -d /mnt/disk/git -U git
 passwd git
 ```
 
