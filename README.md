@@ -3,15 +3,17 @@ Setup your own git server
 
 ## Prerequistes
 
-* server with git and openssh installed
+* server with http git and openssh installed
 * client with git and openssh installed
 
 ## server side 
 
 
 #### SSH (authenticated, secure read/write access, single user)
+
 first add an user and setup home directory to a git store folder.
 all repos are bare object using ".git" as extension
+
 
 ```shell
 useradd -c "git-operator" -M -d /mnt/disk/git -U git
@@ -26,17 +28,17 @@ passwd git
 first setup an HTTP(s)? server pointing to /mnt/disk/git
 without directory listing just an index.html... for an hidden store
 
-```shell
-git clone http://mygit.server.ez/reponame
-```
 
 #### HTTP (public eventually hidden read only access, multi user)
 
 root dir from the web server should be the parent directory from all git users
+again without directory listing just an index.html... for an hidden store.
 
+specific user setup is required. Not to let your users doing anything else than working on their repos.
 
 ```shell
-git clone http://mygit.server.ez/user/reponame
+useradd -c "git-user" -M -d /mnt/disk/git -s /usr/bin/git-shell -U <username>
+passwd <username>
 ```
 
 #### friendly frontend via HTTP(s)?
@@ -57,6 +59,20 @@ The frontend might just fetch datas with stored queries and then present things.
 All done, you can access your gitserver via a webbrowser or **standalone** one...
 
 ## client side
+
+#### HTTP client access
+
+##### single user, read only
+
+```shell
+git clone http://mygit.server.ez/reponame
+```
+
+##### multi user, read only
+
+```shell
+git clone http://mygit.server.ez/user/reponame
+```
 
 
 #### SSH client access
@@ -101,6 +117,8 @@ git push
 
 notice ".git" is optional when cloning...
 
+
+## Hints
 
 #### re-bare a repository into objects
 
