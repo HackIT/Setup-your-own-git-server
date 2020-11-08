@@ -6,12 +6,19 @@ Setup your own git server
 * server with http git and openssh installed
 * client with git and openssh installed
 
+We will assume we are using GNU/Linux®.
+
+This document is targeted to intermediate hackerz.
+
+I assume that readers knows a little about networking and services.
+
+
 ## server side 
 
 
 #### SSH (authenticated, secure read/write access, single user)
 
-first add an user and setup home directory to a git store folder.
+First add an user and setup home directory to a git store folder.
 all repos are bare object using ".git" as extension
 
 
@@ -20,18 +27,18 @@ useradd -c "git-operator" -M -d /mnt/disk/git -U git
 passwd git
 ```
 
-/mnt/disk/git is the home directory git user and it is the place from your bare repos
+/mnt/disk/git is the home directory from **git** user and it is the place from your bare repos.
 
 
 #### HTTP (public eventually hidden read only access, single user)
 
-first setup an HTTP(s)? server pointing to /mnt/disk/git
+First setup an HTTP(s)? server pointing to /mnt/disk/git
 without directory listing just an index.html... for an hidden store
 
 
 #### HTTP (public eventually hidden read only access, multi user)
 
-root dir from the web server should be the parent directory from all git users
+root dir from the web server should be the parent directory from all git users : /mnt/disk
 again without directory listing just an index.html... for an hidden store.
 
 specific user setup is required. Not to let your users doing anything else than working on their repos.
