@@ -35,6 +35,7 @@ passwd git
 First setup an HTTP(s)? server pointing to /mnt/disk/git
 without directory listing just an index.html... for an hidden store
 
+[git-scm.com/git-http-backend...](https://git-scm.com/docs/git-http-backend)
 
 #### HTTP (public eventually hidden read only access, multi user)
 
@@ -43,10 +44,17 @@ again without directory listing just an index.html... for an hidden store.
 
 specific user setup is required. Not to let your users doing anything else than working on their repos.
 
+
 ```shell
 useradd -c "git-user" -M -d /mnt/disk/git -s /usr/bin/git-shell -U <username>
 passwd <username>
 ```
+
+[git-scm.com/git-http-backend...](https://git-scm.com/docs/git-http-backend)
+
+[snackoverflow...](https://stackoverflow.com/questions/6414227/how-to-serve-git-through-http-via-nginx-with-user-password)
+
+
 
 #### friendly frontend via HTTP(s)?
 
@@ -129,11 +137,13 @@ notice ".git" is optional when cloning...
 
 #### re-bare a repository into objects
 
+
 ```shell
 git clone --bare source_reponame bare_reponame.git
 ```
 
 by now you can send that bare repo to your git server using scp(single user mode)
+
 
 ## License
 This paper is free software; you can redistribute it and/or modify it under
