@@ -141,5 +141,5 @@ the terms of the MIT license. See [LICENSE](LICENSE) for details.
 
 ###### Enjoy,                                               HackIT.
 
-###### BTC: bc1qsclcm8jjld2lfqqurarwej3xuxhxxxptmnn3mn
+###### BTC: bc1q5jw0dsgc4x96l0um6vqexp5kq7wthlfvz944uc
 
