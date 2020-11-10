@@ -58,6 +58,8 @@ passwd <username>
 
 #### friendly frontend via HTTP(s)?
 
+##### Homemade app
+
 You need write both a backend and frontend...
 
 * **backend** to handle git repos information
@@ -70,8 +72,14 @@ Then storing goods into database(s)?...
 
 The frontend might just fetch datas with stored queries and then present things...
 
-
 All done, you can access your gitserver via a webbrowser or **standalone** one...
+
+##### sourcehut
+
+[sourcehut.org website](https://sourcehut.org/)
+[sourcehut.org source code](https://sr.ht/~sircmpwn/sourcehut)
+
+Discovered that one few days ago... Seem very well done with lot useful features.
 
 ## client side
 
