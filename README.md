@@ -152,6 +152,23 @@ git clone --bare source_reponame bare_reponame.git
 
 by now you can send that bare repo to your git server using scp(single user mode)
 
+#### local git
+
+The concept is simple, you keep your bare repos (reponame.git) somewhere on your local file system...
+
+Then you clone them to work on source code and then push back to your bare repo...
+
+
+```shell
+git clone /mnt/disk/my_source_code_repository/reponame
+cd reponame
+echo "I've Modified something :)" >> README.md
+git add .
+git commit -m "Aye Karamba!"
+git push
+```
+
+### git isn't stupid ;)
 
 ## License
 This paper is free software; you can redistribute it and/or modify it under
