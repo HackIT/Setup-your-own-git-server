@@ -160,8 +160,11 @@ Then you clone them to work on source code and then push back to your bare repo.
 
 
 ```shell
-git clone /mnt/disk/my_source_code_repository/reponame
-cd reponame
+mkdir -p /mnt/disk/my_source_code_repository
+git init --bare /mnt/disk/my_source_code_repository/example.git
+
+git clone /mnt/disk/my_source_code_repository/example
+cd example
 echo "I've Modified something :)" >> README.md
 git add .
 git commit -m "Aye Karamba!"
