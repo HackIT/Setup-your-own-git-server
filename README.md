@@ -172,6 +172,17 @@ git commit -m "Aye Karamba!"
 git push
 ```
 
+#### git any dir
+
+You can keep trace from everything.
+
+```shell
+cd /etc/init.d
+git --init
+git add .
+git commit -m "First commit."
+```
+
 ### git isn't stupid ;)
 
 ## License
