@@ -16,7 +16,7 @@ I assume that readers knows a little about networking and services.
 ## server side 
 
 
-#### SSH (authenticated, secure read/write access, single user)
+### SSH (authenticated, secure read/write access, single user)
 
 First add an user and setup home directory to a git store folder.
 all repos are bare object using ".git" as extension
@@ -28,6 +28,32 @@ passwd git
 ```
 
 /mnt/disk/git is the home directory from **git** user and it is the place from your bare repos.
+
+
+
+### GIT PROTOCOL  (non authenticated, unsecure read/(possibly write), public access)
+
+
+Notice the --enable=receive-pack which allow push requests.
+
+
+Notice also that the server is public... anybody can pull/push from this access...
+
+
+Git protocol doesn't handle authentication neither a secure layer.
+
+
+Server:
+
+```
+git daemon --verbose --export-all --base-path=/mnt/disk/git --user=git --enable=receive-pack
+```
+
+
+Client:
+```
+git clone git://server.name/reponame
+```
 
 
 #### HTTP (public eventually hidden read only access, single user)
@@ -157,7 +183,7 @@ by now you can send that bare repo to your git server using scp(single user mode
 
 The concept is simple, you keep your bare repos (reponame.git) somewhere on your local file system...
 
-Then you clone them to work on source code and then push back to your bare repo...
+Then you clone them to work on source code and then push back to your local bare repo...
 
 
 ```shell
